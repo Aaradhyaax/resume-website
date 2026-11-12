@@ -1,168 +1,551 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aaradhya Goel | Digital Marketing &amp; Creative Strategy</title>
+  <title>Aaradhya Goel | Digital Marketing & Creative Strategy</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#faf6f0',
+            espresso: '#1c1917',
+            terracotta: '#b84a27',
+            'terracotta-hover': '#96391b',
+            muted: '#57534e',
+            bordercol: '#e7e0d6',
+            cardbg: '#ffffff'
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Custom CSS Enhancements for Smooth Animations & Editorial Feel */
+    body {
+      background-color: #faf6f0;
+      color: #1c1917;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, .font-serif {
+      font-family: 'Fraunces', serif;
+    }
+
+    /* Custom subtle cursor dot */
+    .cursor-dot {
+      pointer-events: none;
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background-color: #b84a27;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background-color 0.2s;
+      z-index: 9999;
+      opacity: 0.8;
+    }
+
+    /* Glassmorphism card effects */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(231, 224, 214, 0.8);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px);
+      border-color: #b84a27;
+      box-shadow: 0 20px 40px -15px rgba(184, 74, 39, 0.12);
+    }
+
+    /* Floating animation */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+    .animate-float {
+      animation: floatSlow 6s ease-in-out infinite;
+    }
+
+    /* Fade in up reveal */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #faf6f0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d6ccbe;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b84a27;
+    }
+  </style>
 </head>
-<body>
-  <header>
-    <nav id="navbar" aria-label="Primary Navigation">
-      <a href="#hero" class="nav-brand">Aaradhya Goel</a>
-      <div class="nav-links">
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#resume" class="nav-link">Resume</a>
-        <a href="mailto:aaradhyaax@gmail.com?subject=Digital%20Marketing%20Internship%20Opportunity" class="nav-link nav-cta">Email Me</a>
+<body class="antialiased selection:bg-terracotta selection:text-white">
+
+  <!-- Custom Cursor Follower -->
+  <div id="cursor-dot" class="cursor-dot hidden md:block"></div>
+
+  <!-- Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md border-b border-bordercol transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#hero" class="font-serif font-bold text-xl tracking-tight text-espresso flex items-center gap-2 group">
+        <span class="w-3 h-3 rounded-full bg-terracotta transition-transform duration-300 group-hover:scale-125"></span>
+        Aaradhya Goel
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-espresso/80">
+        <a href="#about" class="hover:text-terracotta transition-colors">About</a>
+        <a href="#experience" class="hover:text-terracotta transition-colors">Experience</a>
+        <a href="#education" class="hover:text-terracotta transition-colors">Education</a>
+        <a href="#skills" class="hover:text-terracotta transition-colors">Skills</a>
+        <a href="#resume" class="hover:text-terracotta transition-colors">Resume</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="mailto:aaradhyaax@gmail.com?subject=Digital%20Marketing%20Inquiry" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-terracotta text-white font-medium text-sm hover:bg-terracotta-hover transition-all shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+          Let's Talk
+        </a>
+        <!-- Mobile Menu Toggle -->
+        <button id="menu-btn" class="md:hidden p-2 text-espresso focus:outline-none" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
       </div>
-    </nav>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 right-0 bg-cream border-b border-bordercol px-6 py-6 shadow-xl flex flex-col gap-4">
+      <a href="#about" class="mobile-link text-lg font-serif text-espresso">About</a>
+      <a href="#experience" class="mobile-link text-lg font-serif text-espresso">Experience</a>
+      <a href="#education" class="mobile-link text-lg font-serif text-espresso">Education</a>
+      <a href="#skills" class="mobile-link text-lg font-serif text-espresso">Skills</a>
+      <a href="#resume" class="mobile-link text-lg font-serif text-espresso">Resume</a>
+      <a href="mailto:aaradhyaax@gmail.com?subject=Digital%20Marketing%20Inquiry" class="w-full text-center py-3 rounded-full bg-terracotta text-white font-medium">Let's Talk</a>
+    </div>
   </header>
 
-  <main>
-    <section id="hero" class="fade-in">
-      <h1>Aaradhya Goel</h1>
-      <p class="hero-bio">First-year student at SGGSCC (BCom) and IIM Bangalore (BBA DB). Building creative digital marketing strategies, managing event design, and launching independent ventures. Looking for digital marketing internships and freelance work.</p>
-      <div class="hero-actions">
-        <a href="mailto:aaradhyaax@gmail.com?subject=Digital%20Marketing%20Internship%20Opportunity" class="btn-primary">Email Me</a>
-        <a href="https://www.linkedin.com/in/aaradhya-goel-3a845a419?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="btn-secondary">LinkedIn Profile</a>
+  <main class="max-w-6xl mx-auto px-6 pt-32 pb-20">
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-[85vh] flex flex-col justify-center items-start py-12 relative">
+      <div class="absolute right-0 top-10 hidden lg:block opacity-10 pointer-events-none select-none font-serif text-[14rem] font-bold text-terracotta leading-none">
+        AG
+      </div>
+
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-bordercol/60 text-terracotta text-xs font-semibold tracking-wider uppercase mb-6 reveal">
+        <span class="w-2 h-2 rounded-full bg-terracotta animate-pulse"></span>
+        Digital Marketing &bull; Fashion Venturing &bull; Event Curation
+      </div>
+
+      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-espresso mb-8 reveal" style="animation-delay: 0.1s;">
+        Crafting <span class="italic font-normal text-terracotta">aesthetic</span> brand narratives.
+      </h1>
+
+      <p class="text-lg sm:text-xl text-muted max-w-2xl mb-10 leading-relaxed reveal" style="animation-delay: 0.2s;">
+        First-year student at <strong class="text-espresso font-semibold">SGGSCC</strong> (BCom) and <strong class="text-espresso font-semibold">IIM Bangalore</strong> (BBA DB). Merging analytical business foundations with high-taste creative design and digital marketing strategy.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 reveal" style="animation-delay: 0.3s;">
+        <a href="#experience" class="px-8 py-4 rounded-full bg-terracotta text-white font-semibold text-base hover:bg-terracotta-hover transition-all shadow-lg shadow-terracotta/20 transform hover:-translate-y-1 flex items-center gap-2">
+          Explore Experience <i data-lucide="arrow-down" class="w-4 h-4"></i>
+        </a>
+        <a href="#resume" class="px-8 py-4 rounded-full bg-white border border-bordercol text-espresso font-semibold text-base hover:border-terracotta hover:text-terracotta transition-all transform hover:-translate-y-1">
+          View Resume &amp; PDF
+        </a>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 mt-20 pt-10 border-t border-bordercol w-full reveal" style="animation-delay: 0.4s;">
+        <div>
+          <span class="block font-serif text-3xl sm:text-4xl font-bold text-espresso">2+</span>
+          <span class="text-sm text-muted">Institutions (SGGSCC &amp; IIMB)</span>
+        </div>
+        <div>
+          <span class="block font-serif text-3xl sm:text-4xl font-bold text-espresso">100%</span>
+          <span class="text-sm text-muted">Venture Ownership &amp; Curation</span>
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+          <span class="block font-serif text-3xl sm:text-4xl font-bold text-espresso">Active</span>
+          <span class="text-sm text-muted">Digital Marketing Cert. Student</span>
+        </div>
       </div>
     </section>
 
-    <section id="experience" class="fade-in">
-      <h2>Experience &amp; Ventures</h2>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Founder | Independent Fashion Venture</h3>
-          <p class="card-meta">Ongoing Venture</p>
-          <ul>
-            <li>Built and managed a small business centered around fashion products, handling curation, product presentation, and initial brand positioning.</li>
-            <li>Developed visual branding and product displays tailored to target customer preferences.</li>
-            <li>Resulted in hands-on end-to-end management of a retail micro-business from scratch.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Creative Team Member | School Events</h3>
-          <p class="card-meta">Event Design &amp; Execution</p>
-          <ul>
-            <li>Designed and executed visual themes, stage layouts, and promotional assets for major school functions and events.</li>
-            <li>Collaborated with event committees to align creative deliverables with tight timelines.</li>
-            <li>Resulted in cohesive, visually engaging event experiences for hundreds of attendees.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Volunteer Teacher | Master of Miracles</h3>
-          <p class="card-meta">Special Needs Education</p>
-          <ul>
-            <li>Assisted in teaching, planning, and conducting interactive learning sessions for children with special needs.</li>
-            <li>Adapted teaching methods to support individual student engagement and comfort.</li>
-            <li>Resulted in an inclusive, supportive learning environment and stronger community engagement.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="education" class="fade-in">
-      <h2>Education &amp; Continuous Learning</h2>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Bachelor of Commerce (BCom)</h3>
-          <p class="card-meta">Shri Guru Gobind Singh College of Commerce | 1st Year</p>
-          <p>Studying core commerce, business operations, and foundational accounting principles.</p>
-        </article>
-
-        <article class="card">
-          <h3>Bachelor of Business Administration (BBA DB)</h3>
-          <p class="card-meta">IIM Bangalore | 1st Year</p>
-          <p>Pursuing digital business management, strategic thinking, and modern enterprise frameworks.</p>
-        </article>
-
-        <article class="card">
-          <h3>Digital Marketing Certification</h3>
-          <p class="card-meta">Huntridge | Ongoing</p>
-          <p>Developing practical skills in online brand building, campaign strategy, and digital audience engagement.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" class="fade-in">
-      <h2>Skills &amp; Tools</h2>
-      <div class="pill-group">
-        <span class="pill">Brand Positioning</span>
-        <span class="pill">Visual Curation</span>
-        <span class="pill">Digital Marketing Strategy</span>
-        <span class="pill">Event Layout Design</span>
-        <span class="pill">MS Excel</span>
-        <span class="pill">MS Office Suite</span>
-      </div>
-    </section>
-
-    <section id="resume-wrapper" class="fade-in">
-      <div class="resume-header-bar">
-        <h2>Curriculum Vitae</h2>
-        <a href="resume.pdf" download="Aaradhya_Goel_Resume.pdf" class="btn-primary">Download my resume (PDF)</a>
-      </div>
-
-      <article id="resume" class="paper-sheet">
-        <header class="resume-top">
-          <h2>Aaradhya Goel</h2>
-          <p class="resume-contact">
-            <a href="mailto:aaradhyaax@gmail.com">aaradhyaax@gmail.com</a> | 
-            <a href="https://www.linkedin.com/in/aaradhya-goel-3a845a419?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer">linkedin.com/in/aaradhya-goel-3a845a419</a>
+    <!-- About Section -->
+    <section id="about" class="py-24 border-t border-bordercol">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5">
+          <span class="text-xs uppercase tracking-widest font-semibold text-terracotta mb-3 block">Perspective &amp; Drive</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-espresso mb-6">Where commerce meets creative direction.</h2>
+          <p class="text-muted leading-relaxed mb-6">
+            I believe modern digital marketing isn't just about metrics—it's about building a distinct visual identity, cultivating authentic consumer trust, and creating memorable brand moments.
           </p>
-          <p class="resume-summary">First-year BCom (SGGSCC) and BBA DB (IIM Bangalore) student with hands-on experience in brand curation, event design, and inclusive teaching, seeking digital marketing internships and freelance projects.</p>
-        </header>
+          <div class="p-6 rounded-2xl bg-white border border-bordercol shadow-sm">
+            <p class="font-serif italic text-espresso text-lg mb-2">"Design is the silent ambassador of your brand."</p>
+            <span class="text-xs uppercase tracking-wider text-terracotta font-semibold">— Aaradhya Goel</span>
+          </div>
+        </div>
 
-        <div class="resume-block">
-          <h3>Experience &amp; Ventures</h3>
-          <div class="resume-item">
-            <h4>Founder — Independent Fashion Venture</h4>
-            <ul>
-              <li>Built and managed a small business centered around fashion products, handling curation, product presentation, and initial brand positioning.</li>
-              <li>Developed visual branding and product displays tailored to target customer preferences, achieving end-to-end management of a retail micro-business.</li>
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="glass-card p-8 rounded-3xl animate-float">
+            <div class="w-12 h-12 rounded-2xl bg-terracotta/10 text-terracotta flex items-center justify-center mb-6">
+              <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-espresso mb-3">Fashion Entrepreneurship</h3>
+            <p class="text-sm text-muted">Founder of an independent fashion venture, managing product curation, visual storytelling, and retail positioning from the ground up.</p>
+          </div>
+
+          <div class="glass-card p-8 rounded-3xl animate-float" style="animation-delay: 1.5s;">
+            <div class="w-12 h-12 rounded-2xl bg-terracotta/10 text-terracotta flex items-center justify-center mb-6">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-espresso mb-3">Event Design &amp; Curation</h3>
+            <p class="text-sm text-muted">Creative team lead for high-impact school events, designing spatial layouts, aesthetic themes, and cohesive promotional collateral.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience & Ventures Section -->
+    <section id="experience" class="py-24 border-t border-bordercol">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+        <div>
+          <span class="text-xs uppercase tracking-widest font-semibold text-terracotta mb-3 block">Professional Journey</span>
+          <h2 class="text-3xl sm:text-5xl font-bold text-espresso">Experience &amp; Ventures</h2>
+        </div>
+        <p class="text-muted max-w-md mt-4 md:mt-0 text-sm">
+          Hands-on leadership across independent retail, institutional event design, and community volunteering.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Experience Card 1 -->
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="px-3 py-1 rounded-full bg-terracotta/10 text-terracotta text-xs font-semibold">Venture Founder</span>
+              <span class="text-xs text-muted font-medium">Ongoing</span>
+            </div>
+            <h3 class="text-2xl font-bold text-espresso mb-2">Independent Fashion Venture</h3>
+            <p class="text-sm text-terracotta font-semibold mb-6">Founder &amp; Creative Director</p>
+            <ul class="space-y-3 text-sm text-muted mb-8">
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta font-bold">&bull;</span>
+                Built and managed a retail micro-business centered around curated fashion products.
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta font-bold">&bull;</span>
+                Handled product presentation, visual branding, and customer preference mapping.
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta font-bold">&bull;</span>
+                Executed end-to-end operations from sourcing to brand positioning.
+              </li>
             </ul>
           </div>
-          <div class="resume-item">
-            <h4>Creative Team Member — School Events</h4>
-            <ul>
+          <div class="pt-6 border-t border-bordercol/60 flex items-center gap-2 text-xs text-espresso font-semibold uppercase tracking-wider">
+            <i data-lucide="tag" class="w-3.5 h-3.5 text-terracotta"></i> Retail &amp; Branding
+          </div>
+        </div>
+
+        <!-- Experience Card 2 -->
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="px-3 py-1 rounded-full bg-terracotta/10 text-terracotta text-xs font-semibold">Leadership</span>
+              <span class="text-xs text-muted font-medium">Event Committee</span>
+            </div>
+            <h3 class="text-2xl font-bold text-espresso mb-2">Creative Team Member</h3>
+            <p class="text-sm text-terracotta font-semibold mb-6">School Events &amp; Festivals</p>
+            <ul class="space-y-3 text-sm text-muted mb-8">
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta font-bold">&bull;</span>
+                Designed stage layouts, visual themes, and promotional assets for major functions.
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta font-bold">&bull;</span>
+                Collaborated with committees under strict deadlines to ensure cohesive experiences.
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta font-bold">&bull;</span>
+                Delivered immersive aesthetic experiences for hundreds of attendees.
+              </li>
+            </ul>
+          </div>
+          <div class="pt-6 border-t border-bordercol/60 flex items-center gap-2 text-xs text-espresso font-semibold uppercase tracking-wider">
+            <i data-lucide="layout" class="w-3.5 h-3.5 text-terracotta"></i> Visual Curation &amp; Layout
+          </div>
+        </div>
+
+        <!-- Experience Card 3 -->
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="px-3 py-1 rounded-full bg-terracotta/10 text-terracotta text-xs font-semibold">Volunteering</span>
+              <span class="text-xs text-muted font-medium">Community</span>
+            </div>
+            <h3 class="text-2xl font-bold text-espresso mb-2">Volunteer Teacher</h3>
+            <p class="text-sm text-terracotta font-semibold mb-6">Master of Miracles (Special Needs)</p>
+            <ul class="space-y-3 text-sm text-muted mb-8">
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta font-bold">&bull;</span>
+                Assisted in planning and conducting interactive learning sessions for children with special needs.
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta font-bold">&bull;</span>
+                Adapted teaching techniques to support engagement, patience, and comfort.
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta font-bold">&bull;</span>
+                Cultivated an inclusive environment and strengthened community empathy.
+              </li>
+            </ul>
+          </div>
+          <div class="pt-6 border-t border-bordercol/60 flex items-center gap-2 text-xs text-espresso font-semibold uppercase tracking-wider">
+            <i data-lucide="heart" class="w-3.5 h-3.5 text-terracotta"></i> Social Impact &amp; Teaching
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 border-t border-bordercol">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+        <div>
+          <span class="text-xs uppercase tracking-widest font-semibold text-terracotta mb-3 block">Academic Pathway</span>
+          <h2 class="text-3xl sm:text-5xl font-bold text-espresso">Education &amp; Growth</h2>
+        </div>
+        <p class="text-muted max-w-md mt-4 md:mt-0 text-sm">
+          Dual institution background combining commerce rigor with advanced digital business frameworks.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card p-8 rounded-3xl">
+          <span class="text-xs uppercase tracking-wider text-terracotta font-bold block mb-2">Undergraduate &bull; 1st Year</span>
+          <h3 class="text-xl font-bold text-espresso mb-1">Bachelor of Commerce (BCom)</h3>
+          <p class="text-sm text-muted font-medium mb-4">Shri Guru Gobind Singh College of Commerce (SGGSCC)</p>
+          <p class="text-sm text-muted">Focusing on financial principles, corporate structures, and economic analysis.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl">
+          <span class="text-xs uppercase tracking-wider text-terracotta font-bold block mb-2">Undergraduate &bull; 1st Year</span>
+          <h3 class="text-xl font-bold text-espresso mb-1">BBA in Digital Business (BBA DB)</h3>
+          <p class="text-sm text-muted font-medium mb-4">IIM Bangalore</p>
+          <p class="text-sm text-muted">Studying modern digital enterprise strategies, data-driven decision making, and tech business ecosystems.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl">
+          <span class="text-xs uppercase tracking-wider text-terracotta font-bold block mb-2">Certification &bull; Ongoing</span>
+          <h3 class="text-xl font-bold text-espresso mb-1">Digital Marketing Course</h3>
+          <p class="text-sm text-muted font-medium mb-4">Huntridge</p>
+          <p class="text-sm text-muted">Mastering campaign optimization, audience targeting, and online brand scaling.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 border-t border-bordercol">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <span class="text-xs uppercase tracking-widest font-semibold text-terracotta mb-3 block">Expertise &amp; Toolkit</span>
+        <h2 class="text-3xl sm:text-5xl font-bold text-espresso mb-4">Skills &amp; Competencies</h2>
+        <p class="text-muted text-sm">The intersection of creative taste and analytical execution.</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+        <span class="px-6 py-3 rounded-full bg-white border border-bordercol text-espresso font-medium text-sm shadow-sm hover:border-terracotta hover:text-terracotta transition-all cursor-default">Digital Marketing Strategy</span>
+        <span class="px-6 py-3 rounded-full bg-white border border-bordercol text-espresso font-medium text-sm shadow-sm hover:border-terracotta hover:text-terracotta transition-all cursor-default">Brand Positioning &amp; Curation</span>
+        <span class="px-6 py-3 rounded-full bg-white border border-bordercol text-espresso font-medium text-sm shadow-sm hover:border-terracotta hover:text-terracotta transition-all cursor-default">Event Layout &amp; Design</span>
+        <span class="px-6 py-3 rounded-full bg-white border border-bordercol text-espresso font-medium text-sm shadow-sm hover:border-terracotta hover:text-terracotta transition-all cursor-default">Fashion Venture Management</span>
+        <span class="px-6 py-3 rounded-full bg-white border border-bordercol text-espresso font-medium text-sm shadow-sm hover:border-terracotta hover:text-terracotta transition-all cursor-default">MS Excel</span>
+        <span class="px-6 py-3 rounded-full bg-white border border-bordercol text-espresso font-medium text-sm shadow-sm hover:border-terracotta hover:text-terracotta transition-all cursor-default">MS Office Suite</span>
+        <span class="px-6 py-3 rounded-full bg-white border border-bordercol text-espresso font-medium text-sm shadow-sm hover:border-terracotta hover:text-terracotta transition-all cursor-default">Creative Storytelling</span>
+        <span class="px-6 py-3 rounded-full bg-white border border-bordercol text-espresso font-medium text-sm shadow-sm hover:border-terracotta hover:text-terracotta transition-all cursor-default">Special Needs Education Support</span>
+      </div>
+    </section>
+
+    <!-- Resume / Paper Sheet Section -->
+    <section id="resume" class="py-24 border-t border-bordercol">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs uppercase tracking-widest font-semibold text-terracotta mb-3 block">Document &amp; Credentials</span>
+          <h2 class="text-3xl sm:text-5xl font-bold text-espresso">Curriculum Vitae</h2>
+        </div>
+        <div class="mt-4 md:mt-0 flex items-center gap-4">
+          <a href="resume.pdf" download="Aaradhya_Goel_Resume.pdf" class="px-6 py-3 rounded-full bg-terracotta text-white font-medium text-sm hover:bg-terracotta-hover transition-all shadow-md flex items-center gap-2">
+            <i data-lucide="download" class="w-4 h-4"></i> Download PDF
+          </a>
+        </div>
+      </div>
+
+      <!-- Paper Resume Sheet -->
+      <div id="resume-sheet" class="bg-white border border-bordercol rounded-3xl p-8 sm:p-14 shadow-xl max-w-4xl mx-auto">
+        <div class="border-b border-bordercol pb-8 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h3 class="font-serif text-3xl sm:text-4xl font-bold text-espresso mb-2">Aaradhya Goel</h3>
+            <p class="text-sm text-muted">
+              <a href="mailto:aaradhyaax@gmail.com" class="hover:text-terracotta">aaradhyaax@gmail.com</a> &bull; 
+              <a href="https://www.linkedin.com/in/aaradhya-goel-3a845a419?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="hover:text-terracotta">LinkedIn Profile</a>
+            </p>
+          </div>
+          <span class="px-4 py-1.5 rounded-full bg-cream text-espresso text-xs font-semibold self-start sm:self-center border border-bordercol">SGGSCC &amp; IIM Bangalore</span>
+        </div>
+
+        <div class="mb-8">
+          <p class="text-sm text-muted leading-relaxed">
+            First-year BCom (SGGSCC) and BBA DB (IIM Bangalore) student with hands-on experience in brand curation, independent fashion venturing, event design, and inclusive teaching, seeking digital marketing internships and collaborative creative projects.
+          </p>
+        </div>
+
+        <!-- Experience section in resume -->
+        <div class="mb-8">
+          <h4 class="text-xs uppercase tracking-widest font-bold text-terracotta border-b border-bordercol pb-2 mb-4">Experience &amp; Ventures</h4>
+          
+          <div class="mb-6">
+            <div class="flex justify-between items-baseline mb-1">
+              <h5 class="font-bold text-espresso text-base">Founder — Independent Fashion Venture</h5>
+              <span class="text-xs text-muted">Ongoing</span>
+            </div>
+            <ul class="list-disc pl-5 text-sm text-muted space-y-1">
+              <li>Built and managed a small business centered around fashion products, handling curation, product presentation, and initial brand positioning.</li>
+              <li>Developed visual branding and product displays tailored to target customer preferences, achieving end-to-end retail micro-business ownership.</li>
+            </ul>
+          </div>
+
+          <div class="mb-6">
+            <div class="flex justify-between items-baseline mb-1">
+              <h5 class="font-bold text-espresso text-base">Creative Team Member — School Events</h5>
+              <span class="text-xs text-muted">Event Design</span>
+            </div>
+            <ul class="list-disc pl-5 text-sm text-muted space-y-1">
               <li>Designed and executed visual themes, stage layouts, and promotional assets for major school functions and events.</li>
               <li>Collaborated with event committees to align creative deliverables with tight timelines for hundreds of attendees.</li>
             </ul>
           </div>
-          <div class="resume-item">
-            <h4>Volunteer Teacher — Master of Miracles (Special Needs School)</h4>
-            <ul>
+
+          <div>
+            <div class="flex justify-between items-baseline mb-1">
+              <h5 class="font-bold text-espresso text-base">Volunteer Teacher — Master of Miracles</h5>
+              <span class="text-xs text-muted">Special Needs Education</span>
+            </div>
+            <ul class="list-disc pl-5 text-sm text-muted space-y-1">
               <li>Assisted in teaching, planning, and conducting interactive learning sessions for children with special needs.</li>
               <li>Adapted teaching methods to support individual student engagement, fostering an inclusive learning environment.</li>
             </ul>
           </div>
         </div>
 
-        <div class="resume-block">
-          <h3>Education &amp; Certifications</h3>
-          <ul class="resume-edu-list">
-            <li><strong>Bachelor of Commerce (BCom)</strong> — Shri Guru Gobind Singh College of Commerce (1st Year)</li>
-            <li><strong>Bachelor of Business Administration (BBA DB)</strong> — IIM Bangalore (1st Year)</li>
-            <li><strong>Digital Marketing Certification</strong> — Huntridge (Ongoing)</li>
+        <!-- Education section in resume -->
+        <div class="mb-8">
+          <h4 class="text-xs uppercase tracking-widest font-bold text-terracotta border-b border-bordercol pb-2 mb-4">Education &amp; Certifications</h4>
+          <ul class="text-sm text-muted space-y-2">
+            <li><strong class="text-espresso">Bachelor of Commerce (BCom)</strong> — Shri Guru Gobind Singh College of Commerce (SGGSCC) | 1st Year</li>
+            <li><strong class="text-espresso">Bachelor of Business Administration (BBA Digital Business)</strong> — IIM Bangalore | 1st Year</li>
+            <li><strong class="text-espresso">Digital Marketing Certification</strong> — Huntridge | Ongoing</li>
           </ul>
         </div>
 
-        <div class="resume-block">
-          <h3>Skills &amp; Tools</h3>
-          <p>Digital Marketing Strategy, Brand Positioning &amp; Visual Curation, Event Design &amp; Layout Planning, MS Excel, MS Word, MS Office Suite.</p>
+        <!-- Skills section in resume -->
+        <div>
+          <h4 class="text-xs uppercase tracking-widest font-bold text-terracotta border-b border-bordercol pb-2 mb-4">Skills &amp; Tools</h4>
+          <p class="text-sm text-muted">Digital Marketing Strategy, Brand Positioning &amp; Visual Curation, Event Design &amp; Layout Planning, MS Excel, MS Word, MS Office Suite, Creative Storytelling.</p>
         </div>
-      </article>
+      </div>
     </section>
+
   </main>
 
-  <footer>
-    <p>Aaradhya Goel — Open to digital marketing internships and freelance collaborations. <a href="mailto:aaradhyaax@gmail.com?subject=Freelance%20or%20Internship%20Inquiry">Get in touch</a>.</p>
+  <!-- Footer -->
+  <footer class="bg-espresso text-cream py-16 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+      <div>
+        <span class="font-serif text-2xl font-bold block mb-2">Aaradhya Goel</span>
+        <p class="text-sm text-cream/70">Open to digital marketing internships, brand strategy projects, and creative collaborations.</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center gap-6 text-sm">
+        <a href="mailto:aaradhyaax@gmail.com" class="hover:text-terracotta transition-colors flex items-center gap-2">
+          <i data-lucide="mail" class="w-4 h-4 text-terracotta"></i> aaradhyaax@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/aaradhya-goel-3a845a419?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="hover:text-terracotta transition-colors flex items-center gap-2">
+          <i data-lucide="linkedin" class="w-4 h-4 text-terracotta"></i> LinkedIn Profile
+        </a>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-cream/10 text-xs text-cream/50 text-center">
+      &copy; 2026 Aaradhya Goel. Built with editorial precision.
+    </div>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Custom cursor follower logic
+    const cursor = document.getElementById('cursor-dot');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    // Hover effect on interactive elements for cursor
+    const interactives = document.querySelectorAll('a, button, .glass-card');
+    interactives.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '24px';
+        cursor.style.height = '24px';
+        cursor.style.backgroundColor = 'rgba(184, 74, 39, 0.3)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '12px';
+        cursor.style.height = '12px';
+        cursor.style.backgroundColor = '#b84a27';
+      });
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
 </body>
 </html>
